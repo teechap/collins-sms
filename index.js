@@ -13,7 +13,7 @@ app.get('/', function (req, res) {
 
 app.post('/sms', function (req, res) {
   var twiml = twilio.twimlResponse();
-  twiml.say('Thanks for texting!');
+  twiml.message('Thanks for texting!');
 
   res.writeHead(200, {'Content-Type': 'text/xml'});
   res.end(twiml.toString());
