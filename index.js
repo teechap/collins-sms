@@ -13,7 +13,7 @@ app.get('/', function (req, res) {
 
 app.post('/sms', function (req, res) {
   var twiml = new twilio.TwimlResponse();
-  twiml.message('Thanks for texting!');
+  twiml.message("I'm a robot. Stop texting me, Kady.");
 
   res.writeHead(200, {'Content-Type': 'text/xml'});
   res.end(twiml.toString());
