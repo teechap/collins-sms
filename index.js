@@ -12,17 +12,17 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+const validationOpts = {
+  url: cfg.TWILIO_WEBHOOK_URL
+};
+
 app.get('/', function (req, res) {
   res.send('Hello, world!');
 });
 
-const opts = {
-  url: 'https://collins-sms.herokuapp.com/sms'
-};
-
 app.post('/sms', function (request, response) {
 
-  if (twilio.validateExpressRequest(request, cfg.TWILIO_AUTH_TOKEN, opts)) {
+  if (twilio.validateExpressRequest(request, cfg.TWILIO_AUTH_TOKEN, validationOpts)) {
 
     var twiml = new twilio.TwimlResponse();
     twiml.message("You validated the Twilio message, congrats.");
