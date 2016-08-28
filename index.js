@@ -25,7 +25,7 @@ app.post('/sms', function (request, response) {
   if (twilio.validateExpressRequest(request, cfg.TWILIO_AUTH_TOKEN, opts)) {
 
     var twiml = new twilio.TwimlResponse();
-    twiml.say("You validated the Twilio message, congrats.");
+    twiml.message("You validated the Twilio message, congrats.");
     response.type('text/xml');
     response.send(twiml.toString());
 
