@@ -22,6 +22,7 @@ app.post('/sms', function (req, res) {
 
     var twiml = new twilio.TwimlResponse();
     twiml.message("You validated the Twilio message, congrats.");
+    res.type('text/xml');
     res.end(twiml.toString());
 
   } else {
