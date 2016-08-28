@@ -16,17 +16,21 @@ app.get('/', function (req, res) {
   res.send('Hello, world!');
 });
 
-app.post('/sms', function (req, res) {
+const opts = {
+  url: 'https://collins-sms.herokuapp.com/sms'
+};
 
-  if (twilio.validateExpressRequest(req, cfg.TWILIO_AUTH_TOKEN)) {
+app.post('/sms', function (request, response) {
+
+  if (twilio.validateExpressRequest(request, cfg.TWILIO_AUTH_TOKEN, opts)) {
 
     var twiml = new twilio.TwimlResponse();
-    twiml.message("You validated the Twilio message, congrats.");
-    res.type('text/xml');
-    res.end(twiml.toString());
+    twiml.say("You validated the Twilio message, congrats.");
+    response.type('text/xml');
+    response.send(twiml.toString());
 
   } else {
-    res.status(403).send("POST request was not authenticated from Twilio.");
+    response.status(403).send("POST request was not authenticated from Twilio.");
   }
 });
 
