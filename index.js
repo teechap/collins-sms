@@ -19,6 +19,7 @@ app.get('/', function (req, res) {
 app.post('/sms', twilio.webhook(), function (req, res) {
   // webhook() validates that the POST request is really from Twilio
   // and autmagically handles twiml objects passed to res.send().
+  
   var twiml = new twilio.TwimlResponse();
   twiml.message("You validated the Twilio message, congrats.");
   res.send(twiml);
